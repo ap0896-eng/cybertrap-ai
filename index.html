@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberTrap AI | Safe Cyber Deception Demo</title>
+<style>
+:root{--bg:#0b1020;--panel:#131b2e;--panel2:#18233a;--text:#edf3ff;--muted:#9eacc8;--cyan:#55d6e8;--green:#5ee0a0;--amber:#ffca70;--red:#ff7788;--line:#293754}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#172b4b 0,#0b1020 42%);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+header{padding:24px 5%;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--cyan),#7b8cff);display:grid;place-items:center;color:#07111d;font-size:22px;font-weight:bold}
+h1{font-size:22px;margin:0}.subtitle{font-size:12px;color:var(--muted);margin-top:5px}.pill{font-size:12px;border:1px solid #27664d;color:var(--green);background:#102b26;padding:8px 11px;border-radius:99px}
+main{max-width:1150px;margin:0 auto;padding:26px 5% 50px}.intro h2{font-size:clamp(25px,4vw,36px);margin:0 0 9px}.intro p{color:var(--muted);max-width:720px;line-height:1.6;margin-top:0}
+.notice{border:1px solid #65512d;background:#2b2416;color:#ffe2a8;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.5;margin:20px 0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:18px 0}.stat,.panel{background:linear-gradient(180deg,var(--panel),#101729);border:1px solid var(--line);border-radius:16px;padding:17px}.stat span{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;font-size:27px;margin-top:9px}.stat small{color:var(--muted);font-size:11px}
+.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:15px}.panel h3{margin:0 0 7px;font-size:17px}.panel .desc{color:var(--muted);font-size:12px;line-height:1.5;margin:0 0 16px}
+.asset{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.asset:last-child{border-bottom:0}.asset-title{font-weight:600;font-size:14px}.asset-meta{color:var(--muted);font-size:11px;margin-top:5px}.tag{font-size:10px;padding:5px 8px;border-radius:7px;background:#352b18;color:var(--amber);white-space:nowrap}
+button{border:0;border-radius:9px;background:var(--cyan);color:#07111d;font-weight:bold;padding:10px 12px;cursor:pointer;font-size:12px}button:hover{filter:brightness(1.08)}button.secondary{background:#273650;color:var(--text);border:1px solid #3a4c6c}button.danger{background:#3a202d;color:#ffb6c0;border:1px solid #754051}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.network{display:grid;grid-template-columns:1fr 1fr;gap:10px}.node{border:1px solid #344463;border-radius:12px;padding:13px;text-align:center;background:#101a2d}.node b{display:block;font-size:13px}.node span{display:block;color:var(--muted);font-size:11px;margin-top:5px}.node.alert{border-color:#8c3949;background:#2a1725}.timeline{max-height:360px;overflow:auto}.event{border-left:2px solid #3d5879;padding:0 0 17px 13px;margin-left:5px;position:relative}.event:before{content:"";position:absolute;left:-6px;top:2px;width:9px;height:9px;border-radius:50%;background:var(--cyan)}.event.alert:before{background:var(--red)}.event b{font-size:13px}.event p{font-size:12px;color:var(--muted);line-height:1.5;margin:5px 0}.time{font-size:10px;color:#7e91b5}.empty{color:var(--muted);font-size:12px;padding:15px 0}.footer{text-align:center;color:var(--muted);font-size:11px;margin-top:24px;line-height:1.6}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}header{align-items:flex-start}.network{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">CT</div><div><h1>CyberTrap AI</h1><div class="subtitle">Cyber deception & incident monitoring prototype</div></div></div>
+ <div class="pill">● SIMULATION MODE</div>
+</header>
+<main>
+ <section class="intro"><h2>See suspicious activity before it spreads.</h2><p>A safe, simulated cyber-deception dashboard. Trigger demo events against decoy assets, watch alerts appear, and review the incident timeline. No real network or system is monitored.</p></section>
+ <div class="notice"><b>Demo safety note:</b> This prototype uses fictional assets and locally generated events only. It does not scan devices, collect credentials, or connect to external systems.</div>
+ <section class="stats">
+  <div class="stat"><span>DECOY ASSETS</span><strong id="assetCount">4</strong><small>Fictional demo files</small></div>
+  <div class="stat"><span>ALERTS TRIGGERED</span><strong id="alertCount">0</strong><small>In this session</small></div>
+  <div class="stat"><span>ENDPOINTS</span><strong>3</strong><small>Simulated nodes</small></div>
+  <div class="stat"><span>RISK LEVEL</span><strong id="risk" style="color:var(--green)">LOW</strong><small>Based on demo events</small></div>
+ </section>
+ <div class="layout">
+  <section class="panel"><h3>Decoy digital assets</h3><p class="desc">Click “Simulate access” to create a fictional interaction and test the alert workflow.</p>
+   <div class="asset"><div><div class="asset-title">📄 Payroll_Q4_DUMMY.pdf</div><div class="asset-meta">Decoy file · Finance node</div></div><span class="tag">MONITORED</span><button onclick="simulate('Payroll_Q4_DUMMY.pdf','Finance node')">Simulate access</button></div>
+   <div class="asset"><div><div class="asset-title">🔑 Admin_Credentials_FAKE.txt</div><div class="asset-meta">Fake credentials · Identity node</div></div><span class="tag">MONITORED</span><button onclick="simulate('Admin_Credentials_FAKE.txt','Identity node')">Simulate access</button></div>
+   <div class="asset"><div><div class="asset-title">📁 Backup_Secrets_SAMPLE.zip</div><div class="asset-meta">Decoy archive · Backup node</div></div><span class="tag">MONITORED</span><button onclick="simulate('Backup_Secrets_SAMPLE.zip','Backup node')">Simulate access</button></div>
+   <div class="asset"><div><div class="asset-title">🗂️ Customer_Data_TEST.csv</div><div class="asset-meta">Synthetic data · Data node</div></div><span class="tag">MONITORED</span><button onclick="simulate('Customer_Data_TEST.csv','Data node')">Simulate access</button></div>
+   <div class="actions"><button onclick="simulateSequence()">▶ Run attack-path demo</button><button class="secondary" onclick="resetDemo()">Reset demo</button></div>
+  </section>
+  <section class="panel"><h3>Simulated network</h3><p class="desc">Illustrative path between fictional endpoints. Red nodes indicate demo activity.</p>
+   <div class="network">
+    <div class="node" id="node-user"><b>👤 User Entry</b><span>Endpoint A</span></div>
+    <div class="node" id="node-identity"><b>🔐 Identity Node</b><span>Endpoint B</span></div>
+    <div class="node" id="node-finance"><b>💼 Finance Node</b><span>Endpoint C</span></div>
+    <div class="node" id="node-backup"><b>🗄️ Backup Node</b><span>Endpoint D</span></div>
+   </div>
+   <div class="actions"><button class="secondary" onclick="addInfoEvent()">Add safe test event</button></div>
+   <div style="height:1px;background:var(--line);margin:18px 0"></div>
+   <h3>Incident timeline</h3><p class="desc">Latest simulated events appear first.</p>
+   <div id="timeline" class="timeline"><div class="empty">No activity yet. Click “Simulate access” to begin.</div></div>
+  </section>
+ </div>
+ <div class="footer">CyberTrap AI · Student hackathon prototype · All events are simulated locally<br>Detection is rule-based in this demo; it is not a production security product.</div>
+</main>
+<script>
+let alerts=0, events=0;
+const $=id=>document.getElementById(id);
+function stamp(){return new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});}
+function addEvent(title,detail,isAlert=false){
+ events++;
+ const timeline=$('timeline');
+ if(timeline.querySelector('.empty')) timeline.innerHTML='';
+ const item=document.createElement('div'); item.className='event'+(isAlert?' alert':'');
+ const time=document.createElement('div'); time.className='time'; time.textContent=stamp();
+ const b=document.createElement('b'); b.textContent=title;
+ const p=document.createElement('p'); p.textContent=detail;
+ item.append(time,b,p); timeline.prepend(item);
+}
+function simulate(file,node){
+ alerts++; $('alertCount').textContent=alerts;
+ $('risk').textContent=alerts>=3?'HIGH':alerts>=1?'MEDIUM':'LOW';
+ $('risk').style.color=alerts>=3?'var(--red)':'var(--amber)';
+ const id=node.toLowerCase().split(' ')[0];
+ if(id==='identity') $('node-identity').classList.add('alert');
+ if(id==='finance') $('node-finance').classList.add('alert');
+ if(id==='backup') $('node-backup').classList.add('alert');
+ if(id==='data') $('node-user').classList.add('alert');
+ addEvent('Suspicious decoy interaction',file+' was accessed in the simulation at '+node+'. A demo alert was generated for review.',true);
+}
+function simulateSequence(){
+ addEvent('Demo sequence started','A fictional path is being replayed. No real systems are contacted.');
+ simulate('Admin_Credentials_FAKE.txt','Identity node');
+ simulate('Payroll_Q4_DUMMY.pdf','Finance node');
+ simulate('Backup_Secrets_SAMPLE.zip','Backup node');
+ addEvent('Incident summary created','Three simulated decoy interactions were recorded. Review the timeline and affected nodes.',true);
+}
+function addInfoEvent(){addEvent('Health check completed','The local demo dashboard is active. No real network checks were performed.');}
+function resetDemo(){
+ alerts=0;events=0;$('alertCount').textContent='0';$('risk').textContent='LOW';$('risk').style.color='var(--green)';
+ ['node-user','node-identity','node-finance','node-backup'].forEach(id=>$(id).classList.remove('alert'));
+ $('timeline').innerHTML='<div class="empty">No activity yet. Click “Simulate access” to begin.</div>';
+}
+</script>
+</body>
+</html>
